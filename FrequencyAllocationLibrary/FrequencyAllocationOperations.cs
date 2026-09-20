@@ -12,7 +12,34 @@ namespace FrequencyAllocationLibrary
     {
         public static void CalculateConflictDistance(List<CellModel> cells)
         {
-            throw new NotImplementedException();
+            // Calculate conflict distances using Pythagorean formula
+            // For cell A, calcuate Cell B, C , .. till S
+            // For Cell B, calculatr cell C, D, .. till S
+
+            for (int i = 0; i < cells.Count; i++)
+            {
+                for (int j = i + 1; j < cells.Count; j++)
+                {
+                    double conflictDistance = PythagoreanDistance(cells[i], cells[j]);
+
+                    cells[i].ConflictDistances.Add(conflictDistance);
+                }
+            }
+        }
+
+        private static double PythagoreanDistance(CellModel firstCell, CellModel secondCell)
+        {
+            double eastingDiff = secondCell.Easting - firstCell.Easting;
+            double northingDiff = secondCell.Northing - firstCell.Northing;
+            
+            double eastingDiffSquared = Math.Pow(eastingDiff, 2);
+            double northingDiffSquared = Math.Pow(northingDiff, 2);
+            
+            double sum = eastingDiffSquared + northingDiffSquared;
+
+            double distance = Math.Sqrt(sum);
+
+            return distance;
         }
 
         public static void CreateConflictGraph(List<CellModel> cells)

@@ -55,5 +55,18 @@ namespace FrequencyAllocationApp
         {
             throw new NotImplementedException();
         }
+
+        public static void DisplayDistances(List<CellModel> cells)
+        {
+            foreach (CellModel cell in cells)
+            {
+                Console.WriteLine($"Conflict distance for cell {cell.ID}:");
+                foreach (double distance in cell.ConflictDistances)
+                {
+                    Console.Write($"{distance}| ");
+                }
+                Console.WriteLine();
+            }
+        }
     }
 }

@@ -31,6 +31,8 @@ namespace FrequencyAllocationApp
             // CalculateConflictDistance
             ConsoleOperations.DisplayMessage("Calculating Conflict distances of cells...");
             FrequencyAllocationOperations.CalculateConflictDistance(cells);
+            ConsoleOperations.DisplayDistances(cells);
+
 
             // CreateConflictGraph
             ConsoleOperations.DisplayMessage("Calculating Conflict graph of cells...");

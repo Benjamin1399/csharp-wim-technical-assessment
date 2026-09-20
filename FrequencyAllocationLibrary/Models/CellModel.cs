@@ -16,6 +16,8 @@ namespace FrequencyAllocationLibrary.Models
 
         public int? AllocatedFrequency { get; set; } = null;
 
+        public List<double> ConflictDistances { get; set; } = new List<double>();
+
         public List<string> ConflictGraph { get; set; }
     }
 }
