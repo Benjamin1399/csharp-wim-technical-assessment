@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="FrequencyAllocationApp/FrequencyAllocationApp.csproj" />
-  <Project Path="FrequencyAllocationLibrary/FrequencyAllocationLibrary.csproj" />
+  <Project Path="FrequencyAllocationApp/FrequencyAllocationApp.csproj" Id="824eafca-ae81-4a49-be42-3871855f3801" />
+  <Project Path="FrequencyAllocationLibrary/FrequencyAllocationLibrary.csproj" Id="50fd2af7-b5f4-4e31-b2b8-9a574493ade8" />
 </Solution>
