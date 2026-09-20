@@ -8,5 +8,14 @@ namespace FrequencyAllocationLibrary.Models
 {
     public class CellModel
     {
+        public string ID { get; set; }
+
+        public double Easting { get; set; }
+
+        public double Northing { get; set; }
+
+        public int? AllocatedFrequency { get; set; } = null;
+
+        public List<string> ConflictGraph { get; set; }
     }
 }
