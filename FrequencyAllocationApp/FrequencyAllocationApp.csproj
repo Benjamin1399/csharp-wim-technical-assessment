@@ -50,5 +50,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FrequencyAllocationLibrary\FrequencyAllocationLibrary.csproj">
+      <Project>{50FD2AF7-B5F4-4E31-B2B8-9A574493ADE8}</Project>
+      <Name>FrequencyAllocationLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
