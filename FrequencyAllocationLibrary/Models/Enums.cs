@@ -10,7 +10,9 @@ namespace FrequencyAllocationLibrary.Models
     {
         public enum ConflictThreshold
         {
-            Threshold500m = 500
+            Threshold200m = 200,
+            Threshold500m = 500,
+            Threshold1k = 1000
         }
 
         public enum Frequencies 
