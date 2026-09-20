@@ -8,5 +8,15 @@ namespace FrequencyAllocationLibrary.Models
 {
     public class Enums
     {
+        public enum ConflictThreshold
+        {
+            Threshold500m = 500
+        }
+
+        public enum Frequencies 
+        {
+            BaseFrequency = 110,
+            MaxFrequency = 115
+        }
     }
 }
