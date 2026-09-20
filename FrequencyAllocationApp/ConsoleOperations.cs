@@ -61,9 +61,22 @@ namespace FrequencyAllocationApp
             foreach (CellModel cell in cells)
             {
                 Console.WriteLine($"Conflict distance for cell {cell.ID}:");
-                foreach (double distance in cell.ConflictDistances)
+                foreach (KeyValuePair<string, double> distance in cell.ConflictDistances)
                 {
-                    Console.Write($"{distance}| ");
+                    Console.Write($"{distance.Key}: {distance.Value}| ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public static void DisplayConflicts(List<CellModel> cells)
+        {
+            foreach (CellModel cell in cells)
+            {
+                Console.WriteLine($"Cell {cell.ID} has conflicts with: ");
+                foreach (string conflictCell in cell.ConflictGraph)
+                {
+                    Console.Write($"{conflictCell}| ");
                 }
                 Console.WriteLine();
             }

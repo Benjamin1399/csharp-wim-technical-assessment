@@ -22,7 +22,7 @@ namespace FrequencyAllocationLibrary
                 {
                     double conflictDistance = PythagoreanDistance(cells[i], cells[j]);
 
-                    cells[i].ConflictDistances.Add(conflictDistance);
+                    cells[i].ConflictDistances.Add(cells[j].ID, conflictDistance);
                 }
             }
         }
@@ -44,7 +44,31 @@ namespace FrequencyAllocationLibrary
 
         public static void CreateConflictGraph(List<CellModel> cells)
         {
-            throw new NotImplementedException();
+            // we have the conflict distance, now lets compare threshold and add cell to graph
+
+            foreach (CellModel cell in cells)
+            {
+                foreach (KeyValuePair<string, double> conflictCell in cell.ConflictDistances)
+                {
+                    if (conflictCell.Value <= (double)Enums.ConflictThreshold.Threshold500m)
+                    {
+                        // found conflict so assign cell to conflict graph
+                        cell.ConflictGraph.Add(conflictCell.Key);
+
+                        // now need to assign the this cell to Key,
+                        // e.g if we are on cell A and cell B is conflict then cell A -> B
+                        // then we must add A to B's conflict graph as well
+                        foreach (CellModel secondCell in cells)
+                        {
+                            if (secondCell.ID == conflictCell.Key)
+                            {
+                                secondCell.ConflictGraph.Add(cell.ID);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         public static void FrequencyAllocation(List<CellModel> cells)
