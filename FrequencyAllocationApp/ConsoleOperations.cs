@@ -50,5 +50,10 @@ namespace FrequencyAllocationApp
 
             Console.WriteLine();
         }
+
+        internal static void DisplayAllocatedFrequencies(List<CellModel> cells)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

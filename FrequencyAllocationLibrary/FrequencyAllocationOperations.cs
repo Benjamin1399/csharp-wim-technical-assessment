@@ -10,6 +10,21 @@ namespace FrequencyAllocationLibrary
 {
     public class FrequencyAllocationOperations
     {
+        public static void CalculateConflictDistance(List<CellModel> cells)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void CreateConflictGraph(List<CellModel> cells)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void FrequencyAllocation(List<CellModel> cells)
+        {
+            throw new NotImplementedException();
+        }
+
         public static List<CellModel> LoadCsvData(string fileName)
         {
             List<CellModel> cells = new List<CellModel>();

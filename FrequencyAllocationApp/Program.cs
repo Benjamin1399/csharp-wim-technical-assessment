@@ -30,16 +30,19 @@ namespace FrequencyAllocationApp
 
             // CalculateConflictDistance
             ConsoleOperations.DisplayMessage("Calculating Conflict distances of cells...");
-
+            FrequencyAllocationOperations.CalculateConflictDistance(cells);
 
             // CreateConflictGraph
             ConsoleOperations.DisplayMessage("Calculating Conflict graph of cells...");
+            FrequencyAllocationOperations.CreateConflictGraph(cells);
 
             // FrequencyAllocation
             ConsoleOperations.DisplayMessage("Allocating frequencies to cells...");
+            FrequencyAllocationOperations.FrequencyAllocation(cells);
 
             // DisplayAllocatedFrequencies
             ConsoleOperations.DisplayMessage("Frequency Allocation completed.");
+            ConsoleOperations.DisplayAllocatedFrequencies(cells);
 
             // Process another cell site?
         }
