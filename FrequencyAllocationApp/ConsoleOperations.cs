@@ -1,6 +1,8 @@
-﻿using FrequencyAllocationLibrary.Models;
+﻿using FrequencyAllocationLibrary;
+using FrequencyAllocationLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -97,6 +99,69 @@ namespace FrequencyAllocationApp
                 }
                 Console.WriteLine();
             }
+        }
+
+        public static void StartApplication()
+        {
+            string startAgain = "";
+            do
+            {
+                Console.Clear();
+
+                // WelcomeUser
+                WelcomeUser();
+
+                // App Info
+                DisplayAppInfo();
+
+                // DisplayMessage for name of file
+                DisplayMessage("Enter filename to import cell site data: ");
+                // GetStringInput for name of file
+                string fileName = GetStringInput();
+
+                // Start timer
+                Stopwatch sw = Stopwatch.StartNew();
+
+                // LoadCsvData
+                List<CellModel> cells = FrequencyAllocationOperations.LoadCsvData(fileName);
+                ShowUserImportedData(cells);
+
+                // CalculateConflictDistance
+                DisplayMessage("Calculating Conflict distances of cells...");
+                FrequencyAllocationOperations.CalculateConflictDistance(cells);
+                DisplayDistances(cells);
+                Console.WriteLine();
+
+
+                // CreateConflictGraph
+                DisplayMessage("Calculating Conflict graph of cells...");
+                FrequencyAllocationOperations.CreateConflictGraph(cells);
+                DisplayConflicts(cells);
+                Console.WriteLine();
+
+
+                // FrequencyAllocation
+                DisplayMessage("Allocating frequencies to cells...");
+                FrequencyAllocationOperations.FrequencyAllocation(cells);
+                Console.WriteLine();
+
+
+                // DisplayAllocatedFrequencies
+                DisplayMessage("Frequency Allocation completed.");
+                DisplayAllocatedFrequencies(cells);
+                Console.WriteLine();
+
+                // Stop timer and display time
+                sw.Stop();
+                TimeSpan elapsed = sw.Elapsed;
+                Console.WriteLine($"Processing took {elapsed} for {cells.Count} cells");
+                Console.WriteLine();
+
+                // Process another cell site?
+                DisplayMessage("Process another site? (yes/no):");
+                startAgain = GetStringInput();
+
+            } while (startAgain.ToLower() == "yes");
         }
     }
 }
