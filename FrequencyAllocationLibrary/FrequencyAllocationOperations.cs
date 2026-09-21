@@ -73,7 +73,31 @@ namespace FrequencyAllocationLibrary
 
         public static void FrequencyAllocation(List<CellModel> cells)
         {
-            throw new NotImplementedException();
+            foreach (CellModel cell in cells)
+            {
+                foreach (string conflictCell in cell.ConflictGraph)
+                {
+                    if (cell.AllocatedFrequency == null)
+                    {
+                        cell.AllocatedFrequency = (int)Enums.Frequencies.BaseFrequency;
+                    }
+
+                    // find conflict cell
+                    foreach (CellModel findCell in cells)
+                    {
+                        if (findCell.ID == conflictCell)
+                        {
+                            // Found conflict cell so lets check the freq
+                            if (cell.AllocatedFrequency == findCell.AllocatedFrequency)
+                            {
+                                // Cell has same frequency as conflict cell so lets increase Cell Freq
+                                cell.AllocatedFrequency++;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         public static List<CellModel> LoadCsvData(string fileName)
