@@ -51,9 +51,19 @@ namespace FrequencyAllocationApp
             Console.WriteLine();
         }
 
-        internal static void DisplayAllocatedFrequencies(List<CellModel> cells)
+        public static void DisplayAllocatedFrequencies(List<CellModel> cells)
         {
-            throw new NotImplementedException();
+            foreach (CellModel cell in cells)
+            {
+                Console.WriteLine($"Cell {cell.ID} = {cell.AllocatedFrequency}");
+                Console.WriteLine($"Cell {cell.ID} conflicts with:");
+                foreach (string conflictCell in cell.ConflictGraph)
+                {
+                    Console.Write($"{conflictCell}|");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
         }
 
         public static void DisplayDistances(List<CellModel> cells)

@@ -45,10 +45,6 @@ namespace FrequencyAllocationApp
             // FrequencyAllocation
             ConsoleOperations.DisplayMessage("Allocating frequencies to cells...");
             FrequencyAllocationOperations.FrequencyAllocation(cells);
-            foreach (CellModel cell in cells)
-            {
-                Console.WriteLine($"Cell {cell.ID} = {cell.AllocatedFrequency}");
-            }
 
 
             // DisplayAllocatedFrequencies
