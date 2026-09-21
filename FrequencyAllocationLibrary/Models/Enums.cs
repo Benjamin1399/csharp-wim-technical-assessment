@@ -12,7 +12,8 @@ namespace FrequencyAllocationLibrary.Models
         {
             Threshold200m = 200,
             Threshold500m = 500,
-            Threshold1k = 1000
+            Threshold1k = 1000,
+            Threshold350m = 350
         }
 
         public enum Frequencies 
