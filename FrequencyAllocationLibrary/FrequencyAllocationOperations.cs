@@ -52,7 +52,7 @@ namespace FrequencyAllocationLibrary
             {
                 foreach (KeyValuePair<string, double> conflictCell in cell.ConflictDistances)
                 {
-                    if (conflictCell.Value <= (double)Enums.ConflictThreshold.Threshold350m)
+                    if (conflictCell.Value <= (double)Enums.ConflictThreshold.Threshold200m)
                     {
                         // found conflict so assign cell to conflict graph
                         cell.ConflictGraph.Add(conflictCell.Key);

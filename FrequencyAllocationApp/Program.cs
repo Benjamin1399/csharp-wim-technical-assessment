@@ -49,11 +49,13 @@ namespace FrequencyAllocationApp
             // FrequencyAllocation
             ConsoleOperations.DisplayMessage("Allocating frequencies to cells...");
             FrequencyAllocationOperations.FrequencyAllocation(cells);
+            Console.WriteLine();
 
 
             // DisplayAllocatedFrequencies
             ConsoleOperations.DisplayMessage("Frequency Allocation completed.");
             ConsoleOperations.DisplayAllocatedFrequencies(cells);
+            Console.WriteLine();
  
             // Stop timer and display time
             sw.Stop();
