@@ -1,9 +1,11 @@
 ﻿using FrequencyAllocationLibrary.Models;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FrequencyAllocationLibrary
@@ -73,27 +75,49 @@ namespace FrequencyAllocationLibrary
 
         public static void FrequencyAllocation(List<CellModel> cells)
         {
-            foreach (CellModel cell in cells)
+            for (int i = 0; i < cells.Count; i++)
             {
-                foreach (string conflictCell in cell.ConflictGraph)
+                int resetFreq = 0;
+
+                if (cells[i].AllocatedFrequency == null)
                 {
-                    if (cell.AllocatedFrequency == null)
+                    cells[i].AllocatedFrequency = (int)Enums.Frequencies.BaseFrequency;
+                }
+
+                for (int j = 0; j < cells[i].ConflictGraph.Count; j++)
+                {
+                    if (resetFreq > 1)
                     {
-                        cell.AllocatedFrequency = (int)Enums.Frequencies.BaseFrequency;
+                        // We cannot allocate a frequency to this cell, leave it as null
+                        cells[i].AllocatedFrequency = null;
+                        Console.WriteLine($"Cannot assign frequency without conflict to Cell {cells[i].ID}");
+                        break;
                     }
 
                     // find conflict cell
                     foreach (CellModel findCell in cells)
                     {
-                        if (findCell.ID == conflictCell)
+                        if (findCell.ID == cells[i].ConflictGraph[j])
                         {
                             // Found conflict cell so lets check the freq
-                            if (cell.AllocatedFrequency == findCell.AllocatedFrequency)
+                            if (cells[i].AllocatedFrequency == findCell.AllocatedFrequency)
                             {
-                                // Cell has same frequency as conflict cell so lets increase Cell Freq
-                                cell.AllocatedFrequency++;
-                                break;
+                                // Cell has max freq and still found same match
+                                if (cells[i].AllocatedFrequency == (int)Enums.Frequencies.MaxFrequency)
+                                {
+                                    cells[i].AllocatedFrequency = (int)Enums.Frequencies.BaseFrequency;
+                                    j = -1;
+                                    resetFreq++;
+                                }
+                                else
+                                {
+                                    // Cell has same frequency as conflict cell so lets increase Cell Freq
+                                    cells[i].AllocatedFrequency++;
+                                    j = -1;
+                                }
                             }
+
+                            break; // break out of foreach
                         }
                     }
                 }
