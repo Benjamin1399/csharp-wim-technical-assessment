@@ -13,4 +13,4 @@ Clone repository
 Requires csv file as shown below
 Cell ID,Easting,Northing
 A,536660,183800
-File must be placed in bin directory of application
+File must be placed in bin/debug directory of application
