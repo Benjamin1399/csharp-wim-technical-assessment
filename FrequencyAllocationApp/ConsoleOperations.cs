@@ -59,8 +59,15 @@ namespace FrequencyAllocationApp
                 Console.WriteLine($"Cell {cell.ID} conflicts with:");
                 foreach (string conflictCell in cell.ConflictGraph)
                 {
-                    Console.Write($"{conflictCell}|");
+                    foreach (CellModel findCell in cells)
+                    {
+                        if (findCell.ID == conflictCell)
+                        {
+                            Console.Write($"{conflictCell}={findCell.AllocatedFrequency}|");
+                        }
+                    }
                 }
+                Console.WriteLine();
                 Console.WriteLine();
             }
             Console.WriteLine();
