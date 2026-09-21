@@ -1,0 +1,53 @@
+WOULD Planning for Frequency Allocation
+=======================================
+
+W - Walk through the App
+------------------------
+Create csv file with Cell IDs and Easting and Northing
+Load file into directory in which program can access
+Load cells and corresponding data
+Calculate distances for each cell
+Calculate conflict graph for each cell
+Assign Frequencies based on conflict graph
+Display Cells and their allocated frequencies
+
+O - Open up the requirements
+----------------------------
+Given this was researched in the written report, will recap here.
+Program must be generic, not hardcoded to 19 values.
+Threshold is 500m
+Need to learn about file parsing in C# so i can implement the input section of app
+What if a cell cannot get any frequency?
+
+U - User Interface Design
+-------------------------
+This is a console application.
+Greet User
+Ask user for filename to import data
+Show user processing details for each stage of frequency allocation
+Display the allocated frequencies for the cells
+Ask user if more cell sites need to be imported
+If yes, thank user and end program
+
+L - Logic Design
+----------------
+Method: WelcomeUser
+Method: AppInfo
+Method: GetStringInput
+Method: DisplayMessage
+Method: LoadCsvData
+Method: CalculateConflictDistance
+Method: CreateConflictGraph
+Method: FrequencyAllocation
+Method: DisplayAllocatedFrequencies
+
+D - Data Design
+---------------
+CellModel - string ID
+			double Easting
+			double Northing
+			int AllocatedFrequency
+			List<string> ConflictGraph
+
+enum Threshold 500
+enum BaseFrequency 110
